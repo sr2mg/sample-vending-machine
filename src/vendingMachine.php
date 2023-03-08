@@ -54,15 +54,11 @@ class VendingMachine
         return $change_coins;
     }
 
-    private function convert_change_string($change, $change_coins)
+
+    private function convert_change_string($change, $change_coins): string
     {
         if ($change > 0) {
-            // お釣りを返すための硬貨の枚数を文字列に変換する
-            $return_str_arr = array_map(function ($value, $key) {
-                return "{$key} {$value}";
-            }, $change_coins, array_keys($change_coins));
-            $return_str = implode(" ", $return_str_arr);
-            return $return_str;
+            return implode(" ", array_map(fn ($value, $key) => "{$key} {$value}", $change_coins, array_keys($change_coins)));
         } elseif ($change == 0) {
             return "nochange";
         }
