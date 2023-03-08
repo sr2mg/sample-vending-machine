@@ -71,11 +71,9 @@ class VendingMachine
 
     private function calc_sum_insert_coin(array $coins): int
     {
-        $insert_coin_types = array_keys($coins);
-        $coin_counts = array_values($coins);
         $total = 0;
-        for ($i = 0; $i < count($insert_coin_types); $i++) {
-            $total += $insert_coin_types[$i] * $coin_counts[$i];
+        foreach ($coins as $coin_type => $coin_count) {
+            $total += $coin_type * $coin_count;
         }
         return $total;
     }
