@@ -1,6 +1,10 @@
 <?php
 
 declare(strict_types=1);
+require_once(__DIR__ . '\vendingMachine.php');
+
+
+use VendingMachine;
 
 /**
  * メインクラス。
@@ -11,15 +15,17 @@ class Main
     /**
      * 処理の開始地点
      *
-     * @param array $coins 投入額
-     * @param string $menu 注文
+     * @param array $coins 投入額 ["100" => 1, "10" => 2]
+     * @param string $menu 注文 ex. "cola"
      * @return string おつり。大きな硬貨順に枚数を並べる。なしの場合はnochange
      * ex.)
      * - 100円3枚、50円1枚、10円3枚なら"100 3 50 1 10 3"
      */
     public static function runSimply(array $coins, string $menu): string
     {
-        return "do implementation";
+        $vm = new VendingMachine();
+        $ret = $vm->buy($coins, $menu);
+        return $ret;
     }
 
     /**
